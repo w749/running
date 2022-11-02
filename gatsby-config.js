@@ -3,7 +3,7 @@ module.exports = {
   siteMetadata: {
     siteTitle: 'WangXun',
     siteUrl: 'https://run.wangxukun.top',
-    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTtc69JxHNcmN1ETpMUX4dozAgAN6iPjWalQ&usqp=CAU',
+    logo: './src/static/avatar.jpg',
     description: 'Running blog',
     navLinks: [
       {
