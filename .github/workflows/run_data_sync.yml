@@ -2,21 +2,6 @@ name: DataSync
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - scripts/joyrun_sync.py
-      - scripts/nike_sync.py
-      - scripts/nike_to_strava_sync.py
-      - scripts/strava_sync.py
-      - scripts/gen_svg.py
-      - scripts/garmin_sync.py
-      - scripts/keep_sync.py
-      - scripts/gpx_sync.py
-      - scripts/tcx_sync.py
-      - scripts/garmin_to_strava_sync.py
-      - requirements.txt
 
 env:
   # please change to your own config.
@@ -61,7 +46,8 @@ jobs:
       - name: Run sync JoyRun script
         if: env.RUN_TYPE == 'joyrun'
         run: |
-          python scripts/joyrun_sync.py ${{ secrets.JOYRUN_UID }} ${{ secrets.JOYRUN_SID }} --from-uid-sid --with-gpx
+          python scripts/joyrun_sync.py ${{ secrets.JOYRUN_PHONE }} ${{ secrets.JOYRUN_CODE }} --with-gpx
+          python scripts/gpx_to_strava_sync.py ${{ secrets.STRAVA_CLIENT_ID }} ${{ secrets.STRAVA_CLIENT_SECRET }} ${{ secrets.STRAVA_CLIENT_REFRESH_TOKEN }}
 
       - name: Run sync Nike script
         if: env.RUN_TYPE == 'nike'
